@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                         Intent intent = new Intent(MainActivity.this, ShowActivity.class);
-                intent.putExtra("name", "Daniel"); // Optional
+                EditText nameEdit = findViewById(R.id.editTextName);
+
+                intent.putExtra("name", "Abdullah"); // Optional
                 intent.putExtra("number", 1); // Optional
                 startActivity(intent);
             }
