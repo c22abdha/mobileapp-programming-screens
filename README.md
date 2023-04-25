@@ -1,10 +1,19 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+****
+I started by adding a second activity and with my first activity I added a button that leads to the second activity.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+```
+Bundle extras = getIntent().getExtras();
+TextView newView =findViewById(R.id.textViewName);
+```
+This code is getting the extras passed in the intent that started the current activity and assigning it to a variable called "extras".
+Then, it is finding a TextView with the ID "textViewName" and assigning it to a variable called "newView".
 
+
+
+****
 ## Följande grundsyn gäller dugga-svar:
 
 - Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
@@ -33,7 +42,7 @@ function errorCallback(error) {
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](Screenshot_20230425_153219.png)
 
 Läs gärna:
 
