@@ -2,14 +2,17 @@
 # Rapport
 
 ****
-I started by adding a second activity and with my first activity I added a button that leads to the second activity.
+In the MainActivity XML code, three widgets have been added: TextView, EditText and Button.
+The TextView displays a greeting phrase "Hello", the EditText allows the user to enter a name(Which I didn't have before),
+and the button sends data to another activity, "ShowActivity".
 
-```
-Bundle extras = getIntent().getExtras();
-TextView newView =findViewById(R.id.textViewName);
-```
-This code is getting the extras passed in the intent that started the current activity and assigning it to a variable called "extras".
-Then, it is finding a TextView with the ID "textViewName" and assigning it to a variable called "newView".
+
+In the ShowActivity XML code, a widget, a TextView, has been added to display the data received from the intent.
+Inten was used to send data to other activities, and Bundle was used to send key-value, like "String".
+The key passed was "String" with a data type. Intent facilitates the transfer of data between activities in the application.
+
+
+Finally, an arrow-like feature has been added to ShowActivity to make it easier to return to MainActivity.
 
 
 
@@ -25,24 +28,96 @@ Then, it is finding a TextView with the ID "textViewName" and assigning it to a 
 Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+ public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+
+                EditText nameEdit = findViewById(R.id.editTextName);
+                String name = nameEdit.getText().toString();
+
+                intent.putExtra("name", name); // Optional
+                startActivity(intent);
+            }
+        });
     }
 }
 ```
 
+```
+<TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textViewName"/>
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="232dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571" />
+
+```
+
+```
+protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String name = extras.getString("name");
+
+            // Do something with the name and number
+
+
+            TextView nameView = findViewById(R.id.textViewNameShow);
+            nameView.setText(name);
+        }
+    }
+}
+```
+
+```
+    <TextView
+        android:id="@+id/textViewNameShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textViewNameShow"/>
+```
 Bilder läggs i samma mapp som markdown-filen.
 
-![](Screenshot_20230425_153219.png)
+![](Screenshot_20230502_115909_.png)
+![](Screenshot_20230502_115936_.png)
 
 Läs gärna:
 
